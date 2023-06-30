@@ -1,6 +1,7 @@
 let myLibrary = [];
 let newBook;
-const body = document.getElementById("body")
+const body = document.getElementById("body");
+
 
 function Book(title, author, pages) {
     // constructor function to create book
@@ -17,23 +18,24 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 }
 
-
 function showLibrary() {
-    /*
-    myLibrary.forEach(book => {
-        // do stuff here
+    if (myLibrary.length >= 2) {
+        const oldBooks = document.querySelectorAll('.item');
+        for (const book of oldBooks) {
+            book.remove();
+        }
+    }
+    for (let i = 0; i < myLibrary.length; i++) {
         const div = document.createElement('div');
+        div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages}`;
         div.style.border = '1px solid black';
         div.style.padding = '10px';
         div.style.margin = '10px';
-        div.innerText = `Title: ${newBook.title} \n Author: ${newBook.author} \n Pages: ${newBook.pages}`;
+        div.setAttribute('class', 'item');
         body.appendChild(div);
-    })
-    */
-   
-   for (let i = 0; i < myLibrary.length; i++) {
-    const div = document.createElement('div');
-    div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages}`;
-    body.appendChild(div);
-   }
+    }
 }
+
+
+
+// create event listener that creates new div for each book ONLY when clicked ???
