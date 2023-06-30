@@ -1,4 +1,6 @@
 let myLibrary = [];
+let newBook;
+const body = document.getElementById("body")
 
 function Book(title, author, pages) {
     // constructor function to create book
@@ -7,21 +9,31 @@ function Book(title, author, pages) {
     this.pages = pages
 }
 
-let book1 = new Book('book1', 'author1', 100);
-let book2 = new Book('book2', 'author2', 200)
-let book3 = new Book('book3', 'author3', 300)
-
-let inputTitle = 'Novel'
-let inputAuthor = 'Sam'
-let inputPages = 20;
-
 function addBookToLibrary() {
-    let newBook = new Book(inputTitle, inputAuthor, inputPages);
+    let inputTitle = prompt("title");
+    let inputAuthor = prompt("author");
+    let inputPages = prompt("pages");
+    newBook = new Book(inputTitle, inputAuthor, inputPages);
     myLibrary.push(newBook);
 }
 
+
 function showLibrary() {
+    /*
     myLibrary.forEach(book => {
-        console.log(book)
+        // do stuff here
+        const div = document.createElement('div');
+        div.style.border = '1px solid black';
+        div.style.padding = '10px';
+        div.style.margin = '10px';
+        div.innerText = `Title: ${newBook.title} \n Author: ${newBook.author} \n Pages: ${newBook.pages}`;
+        body.appendChild(div);
     })
+    */
+   
+   for (let i = 0; i < myLibrary.length; i++) {
+    const div = document.createElement('div');
+    div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages}`;
+    body.appendChild(div);
+   }
 }
