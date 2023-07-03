@@ -1,0 +1,12 @@
+#new {
+    border: 2px solid blue;
+    padding: 20px;
+    margin-top: 5px;
+    width: 40%;
+    display: none;
+}
+
+form > div {
+    margin: 5px;
+}
+
