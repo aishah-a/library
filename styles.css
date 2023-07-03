@@ -10,3 +10,15 @@ form > div {
     margin: 5px;
 }
 
+/*
+.library {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+*/
+
+.item {
+    border: '1px solid black';
+    padding: '10px';
+    margin: '10px';
+}
