@@ -1,6 +1,9 @@
 let myLibrary = [];
 let newBook;
 const body = document.getElementById("body");
+const createButton = document.getElementById("create");
+const addButton = document.getElementById("addToLib");
+const newBookForm = document.getElementById("new");
 
 
 function Book(title, author, pages) {
@@ -37,5 +40,8 @@ function showLibrary() {
 }
 
 
-
-// create event listener that creates new div for each book ONLY when clicked ???
+createButton.addEventListener("click", () => {
+    // show form which takes input items for book
+    newBookForm.style.display = "block";
+    console.log('click');
+})
