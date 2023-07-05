@@ -27,12 +27,18 @@ addButton.addEventListener('click', function(e) {
     form.reset();
 })
 
-function Book(title, author, pages) {
+function Book(title, author, pages, status) {
     // constructor function to create book
     this.title = title
     this.author = author
     this.pages = pages
+    this.status = status
 }
+
+Book.prototype.changeStatus = function() {
+    this.status = !this.status;
+}
+
 
 function addBookToLibrary() {
     newBook = new Book(inputTitle, inputAuthor, inputPages, inputStatus);
@@ -49,7 +55,7 @@ function showLibrary() {
     for (let i = 0; i < myLibrary.length; i++) {
         const div = document.createElement('div');
         div.setAttribute('class', 'item');
-        div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages}`;
+        div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages} \n Read?: ${myLibrary[i].status}`;
         div.style.border = '1px solid black';
         div.style.padding = '10px';
         div.style.margin = '10px';
@@ -74,4 +80,9 @@ title, author, pages, status
 
 
 4. move library div styling to CSS!!
+
+
+5. set status as boolean and then change inner text with a function
+so status = true or false
+and then use if statement to 
 */
