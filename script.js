@@ -3,6 +3,7 @@ let newBook;
 const body = document.getElementById('body');
 const createButton = document.getElementById('create');
 const addButton = document.getElementById('addToLib');
+const cancelButton = document.getElementById('closeForm');
 const newBookForm = document.getElementById('new');
 const form = document.getElementById('form')
 let inputTitle;
@@ -16,7 +17,6 @@ addButton.addEventListener('click', () => {
     inputPages = document.getElementById('book_pages').value;
     inputStatus = document.querySelector('#status_select').value === 'true' ? true : false;
 
-    console.log(inputTitle + inputAuthor + inputPages + inputStatus);
     addBookToLibrary();
     showLibrary();
     newBookForm.style.display = 'none';
@@ -54,11 +54,34 @@ function showLibrary() {
     for (let i = 0; i < myLibrary.length; i++) {
         const div = document.createElement('div');
         div.setAttribute('class', 'item');
-        div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages} \n Read?: `;
+       
+        const itemTitle = document.createElement('div');
+        itemTitle.setAttribute('class', 'itemDiv');
+        itemTitle.innerText = `Title: ${myLibrary[i].title}`;
+        div.appendChild(itemTitle);
+
+        const itemAuthor = document.createElement('div');
+        itemAuthor.setAttribute('class', 'itemDiv');
+        itemAuthor.innerText = `Author: ${myLibrary[i].author}`;
+        div.appendChild(itemAuthor);
+
+        const itemPages = document.createElement('div');
+        itemPages.setAttribute('class', 'itemDiv');
+        itemPages.innerText = `Pages: ${myLibrary[i].pages}`;
+        div.appendChild(itemPages);
+
+        const itemStatus = document.createElement('div');
+        itemStatus.setAttribute('class', 'itemDiv');
+        itemStatus.innerText = 'Read: '
+        div.appendChild(itemStatus);
+
         const readBtn = document.createElement('button');
         readBtn.setAttribute('id', 'read_btn');
         readBtn.innerText = myLibrary[i].status === true ? 'Yes' : 'No';
-        div.appendChild(readBtn);
+        readBtn.style.fontWeight = 'bold';
+
+        myLibrary[i].status === true ? readBtn.style.color = 'green' : readBtn.style.color = 'red';
+        itemStatus.appendChild(readBtn);
         div.style.border = '1px solid black';
         div.style.padding = '10px';
         div.style.margin = '10px';
@@ -66,15 +89,28 @@ function showLibrary() {
         readBtn.addEventListener('click', () => {
             myLibrary[i].changeStatus();
             readBtn.innerText = myLibrary[i].status === true ? 'Yes' : 'No';
+            myLibrary[i].status === true ? readBtn.style.color = 'green' : readBtn.style.color = 'red';
         })
+
+        
+
+
     }
 }
+
+
+
+
 
 createButton.addEventListener('click', () => {
     // show form which takes input items for book
     newBookForm.style.display = 'block';
 })
 
+cancelButton.addEventListener('click', () => {
+    form.reset();
+    newBookForm.style.display = 'none';
+} )
 
 /* next steps 
 
