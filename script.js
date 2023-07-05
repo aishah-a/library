@@ -14,7 +14,7 @@ addButton.addEventListener('click', () => {
     inputTitle = document.getElementById('book_title').value;
     inputAuthor = document.getElementById('book_author').value;
     inputPages = document.getElementById('book_pages').value;
-    inputStatus = document.querySelector('#status').value
+    inputStatus = document.querySelector('#status_select').value === 'true' ? true : false;
 
     console.log(inputTitle + inputAuthor + inputPages + inputStatus);
     addBookToLibrary();
@@ -28,7 +28,7 @@ addButton.addEventListener('click', function(e) {
 })
 
 function Book(title, author, pages, status) {
-    // constructor function to create book
+    // constructor to create book
     this.title = title
     this.author = author
     this.pages = pages
@@ -38,7 +38,6 @@ function Book(title, author, pages, status) {
 Book.prototype.changeStatus = function() {
     this.status = !this.status;
 }
-
 
 function addBookToLibrary() {
     newBook = new Book(inputTitle, inputAuthor, inputPages, inputStatus);
@@ -55,11 +54,19 @@ function showLibrary() {
     for (let i = 0; i < myLibrary.length; i++) {
         const div = document.createElement('div');
         div.setAttribute('class', 'item');
-        div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages} \n Read?: ${myLibrary[i].status}`;
+        div.innerText = `Title: ${myLibrary[i].title} \n Author: ${myLibrary[i].author} \n Pages: ${myLibrary[i].pages} \n Read?: `;
+        const readBtn = document.createElement('button');
+        readBtn.setAttribute('id', 'read_btn');
+        readBtn.innerText = myLibrary[i].status === true ? 'Yes' : 'No';
+        div.appendChild(readBtn);
         div.style.border = '1px solid black';
         div.style.padding = '10px';
         div.style.margin = '10px';
         body.appendChild(div);
+        readBtn.addEventListener('click', () => {
+            myLibrary[i].changeStatus();
+            readBtn.innerText = myLibrary[i].status === true ? 'Yes' : 'No';
+        })
     }
 }
 
@@ -84,5 +91,5 @@ title, author, pages, status
 
 5. set status as boolean and then change inner text with a function
 so status = true or false
-and then use if statement to 
+and then use if statement to change inner text on read - use
 */
