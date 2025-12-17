@@ -1,15 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <title>Library</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel='stylesheet' href='style.css'>
 </head>
 <body>
     <h2>Library</h2>
-    <div id="container">
+    <button type='button' id='new_book'>Add book</button>
+    <dialog class='dialog'>
+        <h3>Add a new book</h3>
+        <form id="form">
+            <div class='form_div'>
+                <label for='title'>Title</label><br>
+                <input type='text' name='title' id='title' required>
+            </div>
+            
+            <div class='form_div'>
+                <label for='author'>Author</label><br>
+                <input type='text' name='author' id='author'>
+            </div>
+            
+            <div class='form_div'>
+                <label for='pages'>Pages</label><br>
+                <input type='text' name='pages' id='pages'>
+            </div>
 
+            <div class='form_div'>
+                <label for='read'>Read?</label>
+                <input type='checkbox' name='read' id='read'>
+            </div>
+            <div class='form_div'>
+                <input type='submit' id='submit' value='Confirm'>
+                <button type='button' id='cancel'>Cancel</button>
+            </div>
+        </form>
+
+    </dialog>
+    <div id='books'>
     </div>
-    <script src="script.js"></script>
+    <script src='script.js'></script>
 </body>
 </html>
