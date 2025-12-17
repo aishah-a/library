@@ -40,19 +40,34 @@ function showBook(book, id) {
     const read = document.createElement('div');
     read.textContent = `Read: ${book.read}`;
 
-    bookInfo.append(title, author, pages, read);
+    const remove = document.createElement('button');
+    remove.textContent = 'Remove book';
+
+    remove.addEventListener('click', () => {
+    let clickID = bookInfo.getAttribute('data-book-id');
+    removeBook(clickID)
+    container.removeChild(bookInfo);
+    })
+
+    bookInfo.append(title, author, pages, read, remove);
     container.append(bookInfo);
+};
+
+function removeBook(clickID) {
+  let index = -1
+  myLibrary.forEach((each) => {
+    index += 1
+    if (each.id == clickID) {
+      myLibrary.splice(index, 1);
+    }
+  })
 }
+
 
 // default books
 addBookToLibrary('Yellowface', 'R.F. Kuang', 285, 'Yes');
 addBookToLibrary('Maybe You Should Talk to Someone', 'Lori Gottlieb', 359, 'Yes');
 addBookToLibrary('1984', 'George Orwell', 328, 'No');
-
-remove.addEventListener('click', (event) => {
-  console.log(event.target.id)
-})
-
 
 // form actions
 addNew.addEventListener('click', () => {
