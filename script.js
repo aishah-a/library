@@ -30,13 +30,14 @@ function showBook(book, id) {
   bookInfo.setAttribute('data-book-id', id);
 
   const title = document.createElement('div');
+  title.setAttribute('class', 'book_title');
   title.textContent = `${book.title}`;
 
   const author = document.createElement('div');
   author.textContent = `Author: ${book.author}`;
   
   const pages = document.createElement('div');
-  pages.textContent - `${book.pages} pages`;
+  pages.textContent = `${book.pages} pages`;
 
   const read = document.createElement('div');
   read.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
