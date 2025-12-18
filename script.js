@@ -1,8 +1,6 @@
-// main library
 const container = document.querySelector('#books');
 const addNew = document.querySelector('#new_book');
 
-// form
 const form = document.querySelector('#form');
 const submit = document.querySelector('#confirm');
 const cancel = document.querySelector('#cancel');
@@ -27,47 +25,60 @@ function addBookToLibrary(title, author, pages, read) {
 }
 
 function showBook(book, id) {
-    const bookInfo = document.createElement('div');
-    bookInfo.setAttribute('class', 'book');
-    bookInfo.setAttribute('data-book-id', id);
+  const bookInfo = document.createElement('div');
+  bookInfo.setAttribute('class', 'book');
+  bookInfo.setAttribute('data-book-id', id);
 
-    const title = document.createElement('div');
-    title.textContent = `${book.title}`;
-    const author = document.createElement('div');
-    author.textContent = `Author: ${book.author}`;
-    const pages = document.createElement('div');
-    pages.textContent - `${book.pages} pages`;
-    const read = document.createElement('div');
-    read.textContent = `Read: ${book.read}`;
+  const title = document.createElement('div');
+  title.textContent = `${book.title}`;
 
-    const remove = document.createElement('button');
-    remove.textContent = 'Remove book';
+  const author = document.createElement('div');
+  author.textContent = `Author: ${book.author}`;
+  
+  const pages = document.createElement('div');
+  pages.textContent - `${book.pages} pages`;
 
-    remove.addEventListener('click', () => {
-    let clickID = bookInfo.getAttribute('data-book-id');
-    removeBook(clickID)
-    container.removeChild(bookInfo);
-    })
+  const read = document.createElement('div');
+  read.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
 
-    bookInfo.append(title, author, pages, read, remove);
-    container.append(bookInfo);
-};
+  const toggleRead = document.createElement('button');
+  toggleRead.setAttribute('id', 'toggle');
+  updateStatus(toggleRead, book);
 
-function removeBook(clickID) {
-  let index = -1
-  myLibrary.forEach((each) => {
-    index += 1
-    if (each.id == clickID) {
-      myLibrary.splice(index, 1);
-    }
+  toggleRead.addEventListener('click', () => {
+    book.read ? book.read = false : book.read = true;
+    updateStatus(toggleRead, book);
+    read.textContent = `Read: ${book.read ? 'Yes' : 'No'}`;
   })
+
+  const remove = document.createElement('button');
+  remove.textContent = 'Remove book';
+
+  remove.addEventListener('click', () => {
+  let clickID = bookInfo.getAttribute('data-book-id');
+  removeBook(clickID)
+  container.removeChild(bookInfo);
+  })
+
+  bookInfo.append(title, author, pages, read, toggleRead, remove);
+  container.append(bookInfo);
 }
 
+function updateStatus(button, book) {
+  button.textContent = `${book.read ? 'Mark as still reading' : 'Mark as read'}`;
+}
+
+function removeBook(clickID) {
+  const bookIndex = myLibrary.findIndex((book) => book.id === clickID);
+  if (bookIndex !== -1) {
+    myLibrary.splice(bookIndex, 1);
+  }
+}
 
 // default books
-addBookToLibrary('Yellowface', 'R.F. Kuang', 285, 'Yes');
-addBookToLibrary('Maybe You Should Talk to Someone', 'Lori Gottlieb', 359, 'Yes');
-addBookToLibrary('1984', 'George Orwell', 328, 'No');
+addBookToLibrary('Yellowface', 'R.F. Kuang', 285, true);
+addBookToLibrary('Maybe You Should Talk to Someone', 'Lori Gottlieb', 359, true);
+addBookToLibrary('1984', 'George Orwell', 328, false);
 
 // form actions
 addNew.addEventListener('click', () => {
@@ -86,9 +97,9 @@ form.addEventListener('submit', (event) => {
   let read;
 
   if (checkbox.checked) {
-    read = 'Yes';
+    read = true;
   } else {
-    read = 'No'
+    read = false;
   }
 
   addBookToLibrary(title, author, pages, read);
