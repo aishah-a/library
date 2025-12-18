@@ -1,25 +1,125 @@
+* {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-size: 40px;
+    text-align: center;
+}
+
+h3 {
+    margin: 2px;
+    text-align: center;
+}
+
+.newBtnDiv {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
 #books {
     display: flex;
-    border: solid 1px black;
-    height: 350px;
+    justify-content: center;
 }
 
 .dialog {
     width: 300px;
-    height: 400px;
-    background-color: azure;
+    background-color: #2D3047;
+    color: white;
     border: solid 1px grey;
+    border-radius: 10px;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.form_items,
+.form_item:not(.read_item) {
+    display: flex;
+    flex-direction: column;
+}
+
+.form_item {
+    margin-top: 15px;
+}
+
+input:not(#read):not(#submit) {
+    margin-top: 6px;
+    width: 95%;
+}
+
+div.form_item.read_item {
+    display: flex;
+    align-items: center;
+    margin: 12px 0px;
+}
+
+input[type='text'],
+input[type='number'] {
+    height: 30px;
+}
+
+input[type='checkbox'] {
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+}
+
+.buttons {
+    margin: 10px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buttons > * {
+    width: 100px;
+    height: 35px;
+    font-size: 18px;
+}
+
+#submit {
+    background-color: #247BA0;
+    color: white;
+}
+
+#cancel {
+    background-color: #BDD4E7;
+    color: black;
+}
+
+#submit,
+#cancel {
+    border: none;
+    border-radius: 5px;
+}
+
+.book {
+    width: 220px; 
+    padding: 8px;
+    background-color: lavender; 
+    margin: 5px;
     border-radius: 10px;
 }
 
-
-.book {
-    height: 300px; 
-    width: 200px; 
-    background-color: lavender; 
-    margin: 5px;
+.book > div {
+    padding: 2px;
+    margin: 8px;
 }
 
-.book > div {
-    margin: 8px;
+.book_title {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+button:not(#cancel) {
+    margin: 10px;
+    padding: 3px;
+    width: 150px;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+button {
+    cursor: pointer;
 }
